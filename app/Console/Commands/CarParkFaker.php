@@ -74,14 +74,14 @@ class CarParkFaker extends Command
                     $licensePlate = null;
             }
             Airports::create([
-                'id' => Uuid::uuid4();
+                'id' => Uuid::uuid4(),
                 'manufacturer' => $faker->company,
                 'model' => $faker->city,
-                'average_fuel_consumption' => Countries::all()->random()->id,
-            'license_plate' => $faker->
+                'average_fuel_consumption' => Countries::all()->random()->id
+          //  'license_plate' => $faker->
             ]);
 
-            protected $fillable = ['id', 'count', 'manufacturer','model','average_fuel_consumption','license_plate'];
+           //protected $fillable = ['id', 'count', 'manufacturer','model','average_fuel_consumption','license_plate'];
         }
     }
 }

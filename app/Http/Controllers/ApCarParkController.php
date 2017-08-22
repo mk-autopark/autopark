@@ -16,12 +16,14 @@ class ApCarParkController extends Controller
     {
         $config['list'] = ApCarPark::get()->toArray();
         $config['listName'] = 'car park list';
-        $config['create'] = 'carpark.create';
-        $config['show']='carpark.show';
-        $config['edit'] = 'carpark.edit';
-        $config['delete'] = 'carpark.destroy';
+        //$config['create'] = route('carpark.create');
+        //$config['show']=route('carpark.show');
+        //$config['edit'] = route('carpark.edit');
+        //$config['delete'] = route('carpark.destroy');
+dd($config);
+        return view ('admin.list', $config);
 
-        dd($config);
+        //dd($config);
     }
 
     /**
@@ -32,8 +34,14 @@ class ApCarParkController extends Controller
      */
     public function create()
     {
+        $config['list'] = ApCarPark::get()->toArray();
+        $config['titleForm'] = 'Create car park';
+        $config['route'] = route('carpark.create');
+        $config['show']=route('carpark.show');
+        $config['edit'] = route('carpark.edit');
+        $config['delete'] = route('carpark.destroy');
 
-        dd('carpark create');
+        return view ('admin.carpark.create',$config);
     }
 
     /**
@@ -44,7 +52,8 @@ class ApCarParkController extends Controller
      */
     public function store()
     {
-
+        $data = request()->all();
+dd($data);
     }
 
     /**

@@ -14,7 +14,7 @@ class AddFieldToApCarparkTable extends Migration
     public function up()
     {
         Schema::table('ap_carpark', function (Blueprint $table) {
-            $table->string('license_plate', 255);
+            $table->string('license_plate', 255)->unique();
 
         });
     }

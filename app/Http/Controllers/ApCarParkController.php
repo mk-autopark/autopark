@@ -15,8 +15,13 @@ class ApCarParkController extends Controller
     public function index()
     {
         $config['list'] = ApCarPark::get()->toArray();
-        dd($config);
+        $config['listName'] = 'car park list';
+        $config['create'] = 'carpark.create';
+        $config['show']='carpark.show';
+        $config['edit'] = 'carpark.edit';
+        $config['delete'] = 'carpark.destroy';
 
+        dd($config);
     }
 
     /**

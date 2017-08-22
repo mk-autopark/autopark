@@ -39,23 +39,20 @@ class CarParkFaker extends Command
      * @return mixed
      */
 
-    function getRandomString($length = 3)
+    /*function getRandomString($length = 3)
     {
         $faker = Factory::create();
-        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $numbers = '0123456789';
-        $randomString = '';
-        $randomNumber = 'z  ds ddsd';
+
         $randomLicense = '';
 
         for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[mt_rand(0, strlen($characters) - 1)];
-            $randomNumber .= $numbers(rand(0, strlen($numbers) - 1));
-            $randomLicense = $faker->numberBetween($min = 1000, $max = 9000);
+
+
+            $randomLicense = 'T' . $faker->numberBetween($min = 10000, $max = 99999);
 
         }
         return $randomLicense;
-    }
+    }*/
 
     /**
      * Execute the console command.
@@ -65,23 +62,24 @@ class CarParkFaker extends Command
     public function handle()
     {
         $faker = Factory::create();
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 1000; $i++) {
 
-            $licensePlate = null;
-            while (!$licensePlate) {
-                $licensePlate = $this->getRandomString();
-                if (ApCarPark::find($licensePlate))
-                    $licensePlate = null;
+            $randomLicense = null;
+            while (!$randomLicense) {
+
+                $randomLicense = 'T' . str_pad ($faker->numberBetween($min = 0, $max = 99999), 5, '0', STR_PAD_LEFT);
+
+                if (ApCarPark::where('license_plate', $randomLicense )->get()->isNotEmpty())
+                    $randomLicense = null;
             }
-            Airports::create([
-                'id' => Uuid::uuid4(),
-                'manufacturer' => $faker->company,
-                'model' => $faker->city,
-                'average_fuel_consumption' => Countries::all()->random()->id
-                //  'license_plate' => $faker->
-            ]);
 
-            //protected $fillable = ['id', 'count', 'manufacturer','model','average_fuel_consumption','license_plate'];
+            ApCarPark::create([
+                'id' => Uuid::uuid4(),
+                'manufacturer' => $faker->randomElement($array = array ('Audi','Bmw','Citroen','Renault','Toyota','Mercedes-Benz','Volkswagen')),
+                'model' => $faker->firstNameFemale,
+                'average_fuel_consumption' => $faker->randomFloat($nbMaxDecimals = 1, $min = 4, $max = 15),
+                'license_plate' => $randomLicense,
+            ]);
         }
     }
 }

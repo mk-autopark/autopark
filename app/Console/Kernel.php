@@ -5,6 +5,7 @@ namespace App\Console;
 
 use App\Console\Commands\CreateSuperAdmin;
 use App\Console\Commands\CarParkFaker;
+use App\Console\Commands\UsersFaker;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -17,7 +18,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         CreateSuperAdmin::class,
-        CarParkFaker::class
+        CarParkFaker::class,
+        UsersFaker::class
     ];
 
     /**

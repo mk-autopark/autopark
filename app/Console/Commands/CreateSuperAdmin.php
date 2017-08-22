@@ -42,7 +42,7 @@ class CreateSuperAdmin extends Command
         $this->comment('Creating admin user');
         $name = $this->ask('insert name');
         $surname = $this->ask('insert surname');
-        $email = $this->ask('insert e-mail');
+        $email = $this->ask('insert email');
         $person_id = $this->ask('person_id');
         $residential_address = $this->ask('insert address');
         $phone = $this->ask('insert phone');
@@ -53,7 +53,7 @@ class CreateSuperAdmin extends Command
             'surname' => $surname,
             'person_id' => $person_id,
             'phone' => $phone,
-            'e-mail' => $email,
+            'email' => $email,
             'residential_address' => $residential_address,
             'password' => bcrypt($password),
         ]);

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\ApUsers;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Ramsey\Uuid\Uuid;
 
 class RegisterController extends Controller
 {
@@ -49,8 +51,15 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'surname' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:ap_users',
+            'residential_address' => 'required|string|max:255',
+            'person_id' => 'required|int|person_idl|unique:ap_users',
+            'phone' => 'required|string|phone|max:255|unique:ap_users',
             'password' => 'required|string|min:6|confirmed',
+
+
+
         ]);
     }
 
@@ -62,10 +71,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        return ApUsers::create([
+            'id' => Uuid::uuid4(),
             'name' => $data['name'],
+            'surname' => $data['name'],
             'email' => $data['email'],
+            'residential_address' => $data['residential_address'],
+            'person_id' => $data['person_id'],
+            'phone' => $data['phone'],
             'password' => bcrypt($data['password']),
+
         ]);
     }
 }

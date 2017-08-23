@@ -1,88 +1,110 @@
 <?php namespace App\Http\Controllers;
 
+use App\Models\ApCarPark;
 use Illuminate\Routing\Controller;
 
-class ApCarParkController extends Controller {
+class ApCarParkController extends Controller
+{
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /apcarpark
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
+    /**
+     * Display a listing of the resource.
+     * GET /apcarpark
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        $config['list'] = ApCarPark::get()->toArray();
+        $config['listName'] = 'car park list';
+        $config['create'] = 'app.carpark.create';
+        $config['show']='app.carpark.show';
+        $config['edit'] ='app.carpark.edit';
+        $config['delete'] = 'app.carpark.destroy';
+//dd($config);
+        return view ('admin.list', $config);
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /apcarpark/create
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
+        //dd($config);
+    }
 
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /apcarpark
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		//
-	}
+    /**
+     * Show the form for creating a new resource.
+     * GET /apcarpark/create
+     *
+     * @return Response
+     */
+    public function create()
+    {
 
-	/**
-	 * Display the specified resource.
-	 * GET /apcarpark/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
+        $config['titleForm'] = 'Create car park';
+        $config['route'] = route('app.carpark.create');
+        $config['show']=route('app.carpark.show');
+        $config['edit'] = route('app.carpark.edit');
 
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /apcarpark/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
+        $config['list'] = ApCarPark::get()->toArray();
 
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /apcarpark/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
+        return view ('admin.carpark.create',$config);
+    }
 
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /apcarpark/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
+    /**
+     * Store a newly created resource in storage.
+     * POST /apcarpark
+     *
+     * @return Response
+     */
+    public function store()
+    {
+        $data = request()->all();
+dd($data);
+    }
+
+    /**
+     * Display the specified resource.
+     * GET /apcarpark/{id}
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function show($id)
+    {
+        $config['car']= ApCarPark::find($id)->toArray();
+        dd($config);
+    }
+
+
+    /**
+     * Show the form for editing the specified resource.
+     * GET /apcarpark/{id}/edit
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function edit($id)
+    {
+        dd('carpark show with id');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     * PUT /apcarpark/{id}
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function update($id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     * DELETE /apcarpark/{id}
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
 
 }

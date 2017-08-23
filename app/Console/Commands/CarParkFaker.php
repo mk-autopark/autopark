@@ -33,26 +33,7 @@ class CarParkFaker extends Command
         parent::__construct();
     }
 
-    /**
-     * Generates non repetitive symbols for random string
-     *
-     * @return mixed
-     */
 
-    /*function getRandomString($length = 3)
-    {
-        $faker = Factory::create();
-
-        $randomLicense = '';
-
-        for ($i = 0; $i < $length; $i++) {
-
-
-            $randomLicense = 'T' . $faker->numberBetween($min = 10000, $max = 99999);
-
-        }
-        return $randomLicense;
-    }*/
 
     /**
      * Execute the console command.

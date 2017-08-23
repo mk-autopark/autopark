@@ -16,11 +16,11 @@ class ApCarParkController extends Controller
     {
         $config['list'] = ApCarPark::get()->toArray();
         $config['listName'] = 'car park list';
-        //$config['create'] = route('carpark.create');
-        //$config['show']=route('carpark.show');
-        //$config['edit'] = route('carpark.edit');
-        //$config['delete'] = route('carpark.destroy');
-dd($config);
+        $config['create'] = 'app.carpark.create';
+        $config['show']='app.carpark.show';
+        $config['edit'] ='app.carpark.edit';
+        $config['delete'] = 'app.carpark.destroy';
+//dd($config);
         return view ('admin.list', $config);
 
         //dd($config);
@@ -34,12 +34,13 @@ dd($config);
      */
     public function create()
     {
-        $config['list'] = ApCarPark::get()->toArray();
+
         $config['titleForm'] = 'Create car park';
-        $config['route'] = route('carpark.create');
-        $config['show']=route('carpark.show');
-        $config['edit'] = route('carpark.edit');
-        $config['delete'] = route('carpark.destroy');
+        $config['route'] = route('app.carpark.create');
+        $config['show']=route('app.carpark.show');
+        $config['edit'] = route('app.carpark.edit');
+
+        $config['list'] = ApCarPark::get()->toArray();
 
         return view ('admin.carpark.create',$config);
     }

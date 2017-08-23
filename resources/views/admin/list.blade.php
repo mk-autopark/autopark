@@ -16,14 +16,18 @@
 
             </tr>
             @foreach($list as $record)
-                    <tr>
+                    <tr id="{{$record['id']}}">
                     @foreach($record as $key=> $value)
-                        <td>{{$value}}</td>
+                        <td >{{$value}}</td>
                     @endforeach
-                        {{--<td><a href="{{route($edit,$record['id'])}}">
-                                <button type="button" class="btn btn-primary">{{  trans('app.edit')}}</button>
+                        <td><a href="{{route($edit,$record['id'])}}">
+                                <button type="button" class="btn btn-primary">Edit</button>
                             </a></td>
-                        </td>--}}
+                        </td>
+                        <td><a>
+                                <button type="button" class="btn btn-primary" onclick = "deleteItem('{{route($delete,$record['id'])}}')">Delete</button>
+                            </a></td>
+                        </td>
                     </tr>
             @endforeach
         </table>
@@ -35,42 +39,25 @@
 
 
 @section('scripts')
-    {{--<script>
+    {<script>
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        function toggleActive(url, value) {
-            $.ajax({
-                url: url,
-                type: 'POST',
-                data: {
-                    is_active: value
-                },
-                success: function (response) {
-                    var $primary = $('#' + response.id).find('.btn-primary')
-                    var $success = $('#' + response.id).find('.btn-success')
-                    if (response.is_active === '1') {
-                        $success.hide();
-                        $primary.show();
-                    }
-                    else {
-                        $success.show();
-                        $primary.hide();
-                    }
-                }
-            });
-        }
+
         function deleteItem(route) {
             $.ajax({
                 url: route,
                 type: 'DELETE',
                 dataType: 'json',
+
                 success: function (response) {
+                    console.log(response);
                     $('#' + response.id).remove();
                 },
                 error: function () {
+                    console.log(response);
                     alert('ERROR')
                 }
             });

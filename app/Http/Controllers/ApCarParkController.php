@@ -37,8 +37,10 @@ class ApCarParkController extends Controller
 
         $config['titleForm'] = 'Create car park';
         $config['route'] = route('app.carpark.create');
-        $config['show']=route('app.carpark.show');
-        $config['edit'] = route('app.carpark.edit');
+        $config['show']='app.carpark.show';
+        $config['edit'] = 'app.carpark.edit';
+        $config['manufacturer']= ApCarPark::pluck('manufacturer','manufacturer')->toArray();
+        $config['model']= ApCarPark::pluck('model','model')->toArray();
 
         $config['list'] = ApCarPark::get()->toArray();
 
@@ -54,7 +56,13 @@ class ApCarParkController extends Controller
     public function store()
     {
         $data = request()->all();
-dd($data);
+
+        ApCarPark::create(array(
+            'manufacturer' => $data['manufacturer'],
+            'model' => $data['model'],
+            'average_fuel_consumption' => $data['average_fuel_consumption'],
+            'license_plate' => $data['license_plate'],
+            ));
     }
 
     /**
@@ -80,7 +88,17 @@ dd($data);
      */
     public function edit($id)
     {
-        dd('carpark show with id');
+        $record['car']= ApCarPark::find($id)->toArray();
+        $config['titleForm']= 'Car park edit';
+        $config['route']= route('app.carpark.edit',$id);
+        $config['default_manufacturer']=$record['car']['manufacturer'];
+        $config['default_model']=$record['car']['model'];
+        $config['default_average_fuel']=$record['car']['average_fuel_consumption'];
+        $config['default_license_plate']=$record['car']['license_plate'];
+        $config['manufacturer']= ApCarPark::pluck('manufacturer','manufacturer')->toArray();
+        $config['model']= ApCarPark::pluck('model','model')->toArray();
+
+        return view ('admin.carpark.edit', $config);
     }
 
     /**
@@ -92,7 +110,11 @@ dd($data);
      */
     public function update($id)
     {
-        //
+        $data = request()->all();
+
+        $record = ApCarPark::find($id);
+        $record->update($data);
+
     }
 
     /**
@@ -104,7 +126,11 @@ dd($data);
      */
     public function destroy($id)
     {
-        //
+
+        ApCarPark::destroy($id);
+
+        return ["success" => true, "id" => $id];
+
     }
 
 }

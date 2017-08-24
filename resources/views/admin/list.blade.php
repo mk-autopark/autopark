@@ -1,45 +1,59 @@
 @extends('admin.core')
 @section('content')
+    <div class="container">
+        <div>
+            <h2>{{$listName}}</h2>
+            <a href="{{ route($create) }}">Create new {{$listName}}</a>
+        </div>
 
-    <div>
-        <h2>{{$listName}}</h2>
-    </div>
+        @if(sizeof($list)>0)
+            <table class="table table-hover">
+                <thead>
+                <tr>
 
-    @if(sizeof($list)>0)
-        <table class="table table-condensed">
-            <tr>
-                @foreach($list[0] as $key => $value)
-                    <th>{{$key}}</th>
-                @endforeach
-
-
-
-            </tr>
-            @foreach($list as $record)
-                    <tr id="{{$record['id']}}">
-                    @foreach($record as $key=> $value)
-                        <td >{{$value}}</td>
+                    @foreach($list['data'][0] as $key => $value)
+                        @if (!in_array($key, $ignore))
+                            <th>{{$key}}</th>
+                        @endif
                     @endforeach
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($list['data'] as $record)
+                    <tr id="{{$record['id']}}">
+                        @foreach($record as $key=> $value)
+                            @if(!in_array($key, $ignore))
+                                <td>{{$value}}</td>
+                            @endif
+                        @endforeach
                         <td><a href="{{route($edit,$record['id'])}}">
                                 <button type="button" class="btn btn-primary">Edit</button>
                             </a></td>
                         </td>
                         <td><a>
-                                <button type="button" class="btn btn-primary" onclick = "deleteItem('{{route($delete,$record['id'])}}')">Delete</button>
+                                <button type="button" class="btn btn-primary"
+                                        onclick="deleteItem('{{route($delete,$record['id'])}}')">Delete
+                                </button>
                             </a></td>
                         </td>
                     </tr>
-            @endforeach
-        </table>
-    @else
-        <h2>{{ trans('app.no_data')}}</h2>
-    @endif
 
+                @endforeach
+                </tbody>
+            </table>
+            <div class="text-center">
+                {{ $paginate->links() }}
+            </div>
+        @else
+            <h2>No data!!!</h2>
+        @endif
+    </div>
 @endsection
 
 
 @section('scripts')
-    {<script>
+    {
+    <script>
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

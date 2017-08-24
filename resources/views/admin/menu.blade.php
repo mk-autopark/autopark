@@ -22,14 +22,15 @@
     <div class="col-md-3">
 
         <div id="sidebar">
-            <div class="container-fluid tmargin">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search..."/>
-                    <span class="input-group-btn">
-              <button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-          </span>
-                </div>
-            </div>
+            {{--TODO all systems seaarch--}}
+            {{--<div class="container-fluid tmargin">--}}
+                {{--<div class="input-group">--}}
+                    {{--<input type="text" class="form-control" placeholder="Search..."/>--}}
+                    {{--<span class="input-group-btn">--}}
+              {{--<button class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>--}}
+          {{--</span>--}}
+                {{--</div>--}}
+            {{--</div>--}}
 
             <ul id ="menu" class="nav navbar-nav side-bar">
                 <li class="side-bar tmargin"><a href="{{ route('app.carpark.index') }}"><span

@@ -11,14 +11,4 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function ignore()
-    {
-        $ignore= ['created_at',
-            'updated_at',
-            'deleted_at',
-            'id',
-            'count',
-            ];
-        return $ignore;
-    }
 }

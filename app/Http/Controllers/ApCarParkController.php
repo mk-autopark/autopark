@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ApCarPark;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class ApCarParkController extends Controller
@@ -14,17 +15,17 @@ class ApCarParkController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $config['list'] = ApCarPark::paginate(15)->toArray();
+        $search = $request->input('searched_word');
+        $config['list'] = ApCarPark::search($search)->paginate(15)->toArray();
         $config['listName'] = 'Cars park list';
         $config['create'] = 'app.carpark.create';
         $config['show']='app.carpark.show';
         $config['edit'] ='app.carpark.edit';
         $config['delete'] = 'app.carpark.destroy';
-        //$baseController = new \App\Http\Controllers\Controller();
-        //$config['ignore'] = $baseController->ignore();
-        $config['paginate'] = ApCarPark::paginate(15);
+        $config['ignore'] = ['id'];
+        $config['paginate'] = ApCarPark::latest()->search($search)->paginate(15);
 
         return view ('admin.list', $config);
     }

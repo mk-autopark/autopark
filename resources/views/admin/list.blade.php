@@ -1,6 +1,14 @@
 @extends('admin.core')
 @section('content')
     <div class="container">
+        <form action="{{ route('app.carpark.index') }}" method="GET">
+            <div class="input-group">
+                <input type="text" class="form-control" name="searched_word"
+                       placeholder="Search" value="{{ isset($s) ? $s : ' ' }}"><span class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><span
+                                class="glyphicon glyphicon-search"></span></button></span>
+            </div>
+        </form>
         <div>
             <h2>{{$listName}}</h2>
             <a href="{{ route($create) }}">Create new {{$listName}}</a>
@@ -42,6 +50,7 @@
             </table>
             <div class="text-center">
                 {{ $paginate->links() }}
+                {{--{{ $paginate->appends(['searched_word' => $search])->links() }}--}}
             </div>
         @else
             <h2>No data!!!</h2>
@@ -75,6 +84,6 @@
                 }
             });
         }
-    </script>--}}
+    </script>
 @endsection
 

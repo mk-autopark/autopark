@@ -30,3 +30,8 @@ body {
 .tmargin {
     margin-top: 15px;
 }
+
+#menu :hover {
+    text-decoration: none;
+    background-color: #555;
+}

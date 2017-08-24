@@ -4,7 +4,7 @@ namespace App\Models;
 
 
 
-class ApCarParkDriversConnections extends CoreModel
+class ApCarParkDriversConnections extends ConnectionsModel
 {
     /**
      * Database table name
@@ -16,5 +16,10 @@ class ApCarParkDriversConnections extends CoreModel
      * @var array
      */
     protected $fillable = ['id', 'count','driver_id', 'carpark_id'];
+
+    public $timestamps = false;
+
+
+
 
 }

@@ -37,6 +37,7 @@
                             </a></td>
                         </td>
                     </tr>
+
                 @endforeach
                 </tbody>
             </table>
@@ -75,6 +76,6 @@
                 }
             });
         }
-    </script>--}}
+    </script>
 @endsection
 

@@ -1,12 +1,15 @@
 <?php
 namespace App\Models;
+use App\UuidTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Ramsey\Uuid\Uuid;
 
 class CoreModel extends Model
 {
+
     use SoftDeletes;
+    use UuidTrait;
 
     /**
      * Disables auto-increment

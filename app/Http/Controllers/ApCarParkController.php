@@ -22,8 +22,8 @@ class ApCarParkController extends Controller
         $config['show']='app.carpark.show';
         $config['edit'] ='app.carpark.edit';
         $config['delete'] = 'app.carpark.destroy';
-        $baseController = new \App\Http\Controllers\Controller();
-        $config['ignore'] = $baseController->ignore();
+        //$baseController = new \App\Http\Controllers\Controller();
+        //$config['ignore'] = $baseController->ignore();
         $config['paginate'] = ApCarPark::paginate(15);
 
         return view ('admin.list', $config);

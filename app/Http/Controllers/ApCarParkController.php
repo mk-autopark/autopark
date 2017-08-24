@@ -1,4 +1,6 @@
-<?php namespace App\Http\Controllers;
+<?php
+
+namespace App\Http\Controllers;
 
 use App\Models\ApCarPark;
 use Illuminate\Routing\Controller;
@@ -15,15 +17,15 @@ class ApCarParkController extends Controller
     public function index()
     {
         $config['list'] = ApCarPark::get()->toArray();
-        $config['listName'] = 'car park list';
+        $config['listName'] = 'Car park list';
         $config['create'] = 'app.carpark.create';
         $config['show']='app.carpark.show';
         $config['edit'] ='app.carpark.edit';
         $config['delete'] = 'app.carpark.destroy';
-//dd($config);
+        $baseController = new \App\Http\Controllers\Controller();
+        $config['ignore'] = $baseController->ignore();
+//        dd($config);
         return view ('admin.list', $config);
-
-        //dd($config);
     }
 
     /**

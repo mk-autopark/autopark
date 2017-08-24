@@ -31,4 +31,7 @@ class ApUsers extends Authenticatable
     public function role() {
         return $this->belongsToMany(ApRoles::class, 'ap_user_roles_connections', 'user_id', 'role_id' );
     }
+    public function drivers() {
+        return $this->belongsToMany(ApCarPark::class, 'ap_carpark_driver_connections','driver_id','carpark_id');
+    }
 }

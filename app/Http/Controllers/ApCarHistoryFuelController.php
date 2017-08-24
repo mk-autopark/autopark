@@ -23,7 +23,7 @@ class ApCarHistoryFuelController extends Controller {
 	 */
 	public function create()
 	{
-		//
+
 	}
 
 	/**

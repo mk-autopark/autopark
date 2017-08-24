@@ -32,7 +32,7 @@
             @endforeach
         </table>
     @else
-        <h2>{{ trans('app.no_data') }}</h2>
+        <h2>{{ trans('app.no_data')}}</h2>
     @endif
 
 @endsection
@@ -62,6 +62,6 @@
                 }
             });
         }
-    </script>--}}
+    </script>
 @endsection
 

@@ -1,15 +1,12 @@
 <?php
 namespace App\Models;
-use App\UuidTrait;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+
 use Ramsey\Uuid\Uuid;
 
-class CoreModel extends Model
+class ConnectionsModel extends Model
 {
 
-    use SoftDeletes;
-    use UuidTrait;
 
     /**
      * Disables auto-increment
@@ -17,11 +14,6 @@ class CoreModel extends Model
      * @var bool
      */
     public $incrementing = false;
-
-    protected $hidden = ['created_at',
-        'updated_at',
-        'deleted_at',
-        'count'];
 
     /**
      * Generates UUID if doesn't exist in entry

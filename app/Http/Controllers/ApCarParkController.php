@@ -26,6 +26,7 @@ class ApCarParkController extends Controller
         $config['delete'] = 'app.carpark.destroy';
         $config['ignore'] = ['id'];
         $config['paginate'] = ApCarPark::latest()->search($search)->paginate(15);
+
         return view ('admin.list', $config);
     }
 

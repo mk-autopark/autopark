@@ -57,14 +57,14 @@ Route::group(['prefix' => 'routes'], function () {
 });
 
 Route::group(['prefix' => 'drivers'], function () {
-    Route::get('/', ['as' => 'app.drivers.index', 'uses' => 'ApCarParkDriversController@index']);
-    Route::get('/create', ['as' => 'app.drivers.create', 'uses' => 'ApCarParkDriversController@create']);
-    Route::post('/create', ['uses' => 'ApCarParkDriversController@store']);
+    Route::get('/', ['as' => 'app.drivers.index', 'uses' => 'ApCarParkDriversConnectionsController@index']);
+    Route::get('/create', ['as' => 'app.drivers.create', 'uses' => 'ApCarParkDriversConnectionsController@create']);
+    Route::post('/create', ['uses' => 'ApCarParkDriversConnectionsController@store']);
     Route::group(['prefix' => '{id}'], function () {
-        Route::get('/', ['as' => 'app.drivers.show', 'uses' => 'ApCarParkDriversController@show']);
-        Route::get('/edit', ['as' => 'app.drivers.edit', 'uses' => 'ApCarParkDriversController@edit']);
-        Route::post('/edit', ['uses' => 'ApCarParkDriversController@update']);
-        Route::delete('/delete', ['as' => 'app.drivers.destroy', 'uses' => 'ApCarParkDriversController@destroy']);
+        Route::get('/', ['as' => 'app.drivers.show', 'uses' => 'ApCarParkDriversConnectionsController@show']);
+        Route::get('/edit', ['as' => 'app.drivers.edit', 'uses' => 'ApCarParkDriversConnectionsController@edit']);
+        Route::post('/edit', ['uses' => 'ApCarParkDriversConnectionsController@update']);
+        Route::delete('/delete', ['as' => 'app.drivers.destroy', 'uses' => 'ApCarParkDriversConnectionsController@destroy']);
     });
 });
 

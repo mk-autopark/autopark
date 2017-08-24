@@ -16,15 +16,16 @@ class ApCarParkController extends Controller
      */
     public function index()
     {
-        $config['list'] = ApCarPark::get()->toArray();
-        $config['listName'] = 'Car park list';
+        $config['list'] = ApCarPark::paginate(15)->toArray();
+        $config['listName'] = 'Cars park list';
         $config['create'] = 'app.carpark.create';
         $config['show']='app.carpark.show';
         $config['edit'] ='app.carpark.edit';
         $config['delete'] = 'app.carpark.destroy';
         $baseController = new \App\Http\Controllers\Controller();
         $config['ignore'] = $baseController->ignore();
-//        dd($config);
+        $config['paginate'] = ApCarPark::paginate(15);
+
         return view ('admin.list', $config);
     }
 

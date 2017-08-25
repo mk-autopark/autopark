@@ -3,6 +3,7 @@
 use App\Models\ApCarPark;
 use App\Models\ApCarParkDriversConnections;
 use App\Models\ApUsers;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class ApCarParkDriversConnectionsController extends Controller
@@ -14,18 +15,20 @@ class ApCarParkDriversConnectionsController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $config['list'] = ApCarParkDriversConnections::get()->toArray();
-
+        $search = $request->input('searched_word');
+        $config['search'] = $search;
+        $config['list'] = ApCarParkDriversConnections::paginate(15)->toArray();
         $config['listName'] = 'driver assignments to cars';
         $config['create'] = 'app.drivers.create';
         $config['show'] = 'app.drivers.show';
         $config['edit'] = 'app.drivers.edit';
         $config['delete'] = 'app.drivers.destroy';
-        //dd($config);
-
+        $config['paginate'] = ApCarParkDriversConnections::paginate(15);
+        $config['ignore'] = ['id'];
         return view('admin.list', $config);
+
     }
 
     /**

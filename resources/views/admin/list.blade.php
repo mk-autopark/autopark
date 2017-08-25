@@ -4,7 +4,7 @@
         <form action="{{ route('app.carpark.index') }}" method="GET">
             <div class="input-group">
                 <input type="text" class="form-control" name="searched_word"
-                       placeholder="Search" value="{{ isset($s) ? $s : ' ' }}"><span class="input-group-btn">
+                       placeholder="Search"><span class="input-group-btn">
                     <button type="submit" class="btn btn-default"><span
                                 class="glyphicon glyphicon-search"></span></button></span>
             </div>

@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\ApCarPark;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Validation\Validator;
+//use Illuminate\Support\Facades\Validator;
+//use Illuminate\Validation\Validator;
+//use Illuminate\Support\Facades\Validator;
+//use Illuminate\Contracts\Validation\Validator;
 
 class ApCarParkController extends Controller
 {
@@ -58,8 +63,13 @@ class ApCarParkController extends Controller
      *
      * @return Response
      */
-    public function store()
+    public function store(Request $request)
     {
+
+        $this->validate($request, array(
+            'average_fuel_consumption' => 'required|digits:4',
+            'license_plate' => 'required|string|max:6|unique:ap_carpark',
+        ));
         $data = request()->all();
 
         ApCarPark::create(array(
@@ -138,5 +148,6 @@ class ApCarParkController extends Controller
         return ["success" => true, "id" => $id];
 
     }
+
 
 }

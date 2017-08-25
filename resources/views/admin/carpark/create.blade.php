@@ -1,32 +1,29 @@
 @extends('admin.core')
 @section('content')
-    <h2>{{$titleForm}}</h2>
+    <div class="container">
+        <div class="row">
+            <h2>{{$titleForm}}</h2>
 
-    {!! Form::open(['url' =>  $route, 'method' => 'post', 'files' => true])!!}
+            {!! Form::open(['url' =>  $route, 'method' => 'post', 'files' => true])!!}
 
-    <div class="form-group">
-    {{Form::label('manufacturer', 'Select car manufacturer')}}
-    {{Form::select('manufacturer', $manufacturer, null, ['placeholder' => 'Pick a manufacturer...'])}}
+            {{Form::label('Manufacturer', 'Select car manufacturer')}}
+            {{Form::select('manufacturer', $manufacturer, null, ['class' => 'form-control','placeholder' => 'Pick a manufacturer...'])}}
+
+            {{Form::label('Model', 'Select car model')}}
+            {{Form::select('model',$model , null, ['class' => 'form-control','placeholder' => 'Pick a manufacturer...'])}}
+
+            {{Form::label('average_fuel_consumption', 'Enter car fuel consumption')}}
+            {{Form::text('average_fuel_consumption', null,['class' => 'form-control'])}}
+
+            {{Form::label('license_plate', 'Enter car license plate number')}}
+            {{Form::text('license_plate', null,['class' => 'form-control'])}}
+           <br>
+            <a class="btn btn-primary" href="{{$back}}">Back</a>
+            {{Form::submit(trans('Save'), array('class' => 'btn btn-success')) }}
+
+            {!! Form::close() !!}
+        </div>
     </div>
-
-    <div class="form-group">
-    {{Form::label('model', 'Select car model')}}
-    {{Form::select('model',$model , null, ['placeholder' => 'Pick a manufacturer...'])}}
-    </div>
-
-    <div class="form-group">
-    {{Form::label('average_fuel_consumption', 'enter car fuel consumption')}}
-    {{Form::text('average_fuel_consumption')}}
-    </div>
-
-    <div class="form-group">
-    {{Form::label('license_plate', 'enter car license plate number')}}
-    {{Form::text('license_plate')}}
-    </div>
-    {{Form::submit(trans('app.save'), array('class' => 'btn btn-success')) }}
-    {!! Form::close() !!}
-
-
 
 
 @endsection

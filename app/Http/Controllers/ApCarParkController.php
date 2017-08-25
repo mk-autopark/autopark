@@ -48,7 +48,7 @@ class ApCarParkController extends Controller
         $config['model']= ApCarPark::pluck('model','model')->toArray();
 
         $config['list'] = ApCarPark::get()->toArray();
-
+        $config['back'] = '/carpark';
         return view ('admin.carpark.create',$config);
     }
 
@@ -102,6 +102,7 @@ class ApCarParkController extends Controller
         $config['default_license_plate']=$record['car']['license_plate'];
         $config['manufacturer']= ApCarPark::pluck('manufacturer','manufacturer')->toArray();
         $config['model']= ApCarPark::pluck('model','model')->toArray();
+        $config['back'] = '/carpark';
 
         return view ('admin.carpark.edit', $config);
     }

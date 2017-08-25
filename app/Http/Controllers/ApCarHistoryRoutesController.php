@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Models\ApCarParkDriversConnections;
 use Illuminate\Routing\Controller;
 
 class ApCarHistoryRoutesController extends Controller {
@@ -23,8 +24,20 @@ class ApCarHistoryRoutesController extends Controller {
 	 */
 	public function create()
 	{
-		//
-	}
+
+        $config['titleForm'] = 'Create car routes';
+        $config['route'] = route('app.routes.create');
+        $config['show']='app.routes.show';
+        $config['edit'] = 'app.routes.edit';
+        $config ['conn'] = ApCarParkDriversConnections::pluck('id')->toArray();
+        $config['back'] = '/routes';
+
+        return view ('admin.routes.create',$config);
+    }
+
+
+
+
 
 	/**
 	 * Store a newly created resource in storage.
@@ -34,7 +47,8 @@ class ApCarHistoryRoutesController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		$data = request()->all();
+		
 	}
 
 	/**

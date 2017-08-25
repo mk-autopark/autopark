@@ -18,6 +18,7 @@ class ApCarParkController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('searched_word');
+        $config['search'] = $search;
         $config['list'] = ApCarPark::search($search)->paginate(15)->toArray();
         $config['listName'] = 'Cars park list';
         $config['create'] = 'app.carpark.create';

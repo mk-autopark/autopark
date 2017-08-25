@@ -50,8 +50,7 @@
                 </tbody>
             </table>
             <div class="text-center">
-                {{ $paginate->links() }}
-                {{--{{ $paginate->appends(['searched_word' => $search])->links() }}--}}
+                {{ $paginate->appends(['searched_word' => $search])->links() }}
             </div>
         @else
             <h2>No data!!!</h2>

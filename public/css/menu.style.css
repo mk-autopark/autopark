@@ -35,3 +35,8 @@ body {
     text-decoration: none;
     background-color: #555;
 }
+
+#menu :focus {
+    text-decoration: none;
+    background-color: #555;
+}

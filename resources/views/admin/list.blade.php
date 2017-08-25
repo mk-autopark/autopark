@@ -39,7 +39,7 @@
                             </a></td>
                         </td>
                         <td><a>
-                                <button type="button" class="btn btn-primary"
+                                <button type="button" class="btn btn-danger"
                                         onclick="deleteItem('{{route($delete,$record['id'])}}')">Delete
                                 </button>
                             </a></td>

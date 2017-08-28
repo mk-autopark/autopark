@@ -10,7 +10,7 @@ class ApHistoryRoutes extends CoreModel
      * Database table name
      * @var string
      */
-    protected $table = 'ap_history_fuel';
+    protected $table = 'ap_history_routes';
     /**
      * Fillable column names
      * @var array

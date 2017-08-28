@@ -1,6 +1,8 @@
 <?php namespace App\Http\Controllers;
 
 use App\Models\ApCarParkDriversConnections;
+use App\Models\ApHistoryRoutes;
+use Carbon\Carbon;
 use Illuminate\Routing\Controller;
 
 class ApCarHistoryRoutesController extends Controller {
@@ -29,10 +31,12 @@ class ApCarHistoryRoutesController extends Controller {
         $config['route'] = route('app.routes.create');
         $config['show']='app.routes.show';
         $config['edit'] = 'app.routes.edit';
-        $config ['conn'] = ApCarParkDriversConnections::pluck('id')->toArray();
+        $config ['conn'] = ApCarParkDriversConnections::pluck('id','id')->toArray();
         $config['back'] = '/routes';
 
         return view ('admin.routes.create',$config);
+
+
     }
 
 
@@ -48,8 +52,19 @@ class ApCarHistoryRoutesController extends Controller {
 	public function store()
 	{
 		$data = request()->all();
-		
-	}
+        //$record = Carbon::createFromFormat('Y-m-d H', $data['entry_date'])->toDateTimeString();
+		//dd($data);
+
+
+        ApHistoryRoutes::create(array(
+            'entry_date' => $data['entry_date'],
+            'distance' => $data['distance'],
+            'connection_id'=> $data['conn'],
+        ));
+
+
+
+    }
 
 	/**
 	 * Display the specified resource.

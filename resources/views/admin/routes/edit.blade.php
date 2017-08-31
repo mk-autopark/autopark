@@ -11,20 +11,15 @@
                 <div class="form-group">
 
                     {{Form::label('conn', 'Select driver car connection')}}
-                    {{Form::select('conn',$conn , null, ['class' => 'form-control','placeholder' => 'Pick an id...'])}}
+                    {{Form::select('conn',$conn , $default_conn, ['class' => 'form-control','placeholder' => 'Pick an id...'])}}
 
                 </div>
             </div>
 
-
-            {{--{{Form::label('entry_date', 'Enter date')}}
-            {{Form::text('entry_date', null,['class' => 'form-control'])}}--}}
-
-
             <div class='col-sm-6'>
                 <div class="form-group">
                     {{Form::label('distance', 'Enter distance')}}
-                    {{Form::text('distance', null,['class' => 'form-control'])}}
+                    {{Form::text('distance', $default_distance,['class' => 'form-control'])}}
 
                 </div>
             </div>
@@ -56,7 +51,8 @@
     <script type="text/javascript">
         $(function () {
             $('#datetimepicker1').datetimepicker({
-                format: 'YYYY-MM-DD HH:MM'
+                format: 'YYYY-MM-DD HH:MM',
+                defaultDate: "{{$default_date}}"
 
             });
 

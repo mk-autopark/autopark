@@ -87,8 +87,20 @@ class ApCarHistoryRoutesController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
-	}
+	    $record = ApHistoryRoutes::find($id)->toArray();
+
+        $config['titleForm'] = 'Edit car routes';
+        $config['route'] = route('app.routes.edit',$id);
+        $config['show']='app.routes.show';
+        $config ['conn'] = ApCarParkDriversConnections::pluck('id','id')->toArray();
+        $config ['default_conn']= $record['connection_id'];
+        $config ['default_distance']= $record['distance'];
+        $config ['default_date']= $record['entry_date'];
+        $config['back'] = '/routes';
+
+        return view ('admin.routes.edit',$config);
+
+    }
 
 	/**
 	 * Update the specified resource in storage.

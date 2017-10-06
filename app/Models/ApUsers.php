@@ -37,4 +37,14 @@ class ApUsers extends Authenticatable
     {
         return $this->belongsToMany(ApCarPark::class, 'ap_carpark_driver_connections', 'driver_id', 'carpark_id');
     }
+
+    public function scopeSearch($query, $search) {
+        return $query->where('name', 'like', '%' .$search. '%')
+            ->orWhere('surname', 'like', '%' .$search. '%')
+            ->orWhere('email', 'like', '%' .$search. '%')
+            ->orWhere('residential_address', 'like', '%' .$search. '%')
+            ->orWhere('phone', 'like', '%' .$search. '%');
+
+    }
+
 }

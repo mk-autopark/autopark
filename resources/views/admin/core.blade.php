@@ -16,10 +16,15 @@
 
 <body>
 @include('admin.menu')
-<div id="list">
-    @yield('content')
-</div>
 
+<div class="row">
+    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+        @include('admin.sidbar')
+    </div>
+    <div class="col-lg-10 col-md-10 hidden-sm hidden-xs">
+        @yield('content')
+    </div>
+</div>
 
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

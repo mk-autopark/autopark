@@ -6,10 +6,7 @@ use App\Models\ApCarPark;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Validation\Validator;
-//use Illuminate\Support\Facades\Validator;
-//use Illuminate\Validation\Validator;
-//use Illuminate\Support\Facades\Validator;
-//use Illuminate\Contracts\Validation\Validator;
+
 
 class ApCarParkController extends Controller
 {

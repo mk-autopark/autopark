@@ -2,6 +2,7 @@
 
 use App\Models\ApUsers;
 use Illuminate\Routing\Controller;
+use Illuminate\Http\Request;
 
 class ApUsersController extends Controller
 {
@@ -12,17 +13,18 @@ class ApUsersController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $config['list'] = ApUsers::paginate(15)->toArray();
+        $search = $request->input('searched_word');
+        $config['search'] = $search;
+        $config['list'] = ApUsers::search($search)->paginate(15)->toArray();
         $config['listName'] = 'Users list';
         $config['create'] = 'app.users.create';
         $config['show'] = 'app.users.show';
         $config['edit'] = 'app.users.edit';
         $config['delete'] = 'app.users.destroy';
-        $baseController = new \App\Http\Controllers\Controller();
-        $config['ignore'] = $baseController->ignore();
-        $config['paginate'] = ApUsers::paginate(15);
+        $config['ignore'] = ['id','count', 'deleted_at', ];
+        $config['paginate'] = ApUsers::latest()->search($search)->paginate(15);
 
         return view('admin.list', $config);
     }

@@ -11,8 +11,10 @@
         </form>
         <div>
             <h2>{{$listName}}</h2>
-            <a href="{{ route($create) }}">Create new {{$listName}}</a>
+            @if(isset($create))
+                <a class="btn btn-success" href="{{ route($create) }}">Create new {{$listName}}</a>
         </div>
+        @endif
 
         @if(sizeof($list)>0)
             <table class="table table-hover">
